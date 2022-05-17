@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/temp_project/Hanger/app/src/main/res/layout/activity_main.xml" value="0.27309782608695654" />
-        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_login.xml" value="0.18697916666666667" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/drawable/ic_login_bk.xml" value="0.1615" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/drawable/login_shape_bk.xml" value="0.1615" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_main.xml" value="0.18697916666666667" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/layout_login.xml" value="0.18" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/layout_register.xml" value="0.16" />
       </map>
     </option>
   </component>
