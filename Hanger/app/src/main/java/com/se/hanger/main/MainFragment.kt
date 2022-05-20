@@ -10,10 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.se.hanger.R
+import com.se.hanger.databinding.FragmentMainBinding
 import com.se.hanger.model.Weather
 import com.se.hanger.retrofit.RetrofitClient
 import com.se.hanger.retrofit.api.WeatherService
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,7 +30,7 @@ class MainFragment : Fragment() {
     private var job = Job()
     private val _weatherItems = MutableLiveData<List<Weather.Response.Body.Items.Item>>()
     private val weatherItems: LiveData<List<Weather.Response.Body.Items.Item>> = _weatherItems
-
+    lateinit var binding: FragmentMainBinding
 
     companion object {
         // 실수 입력 불가 e.g. 37.651234
@@ -38,7 +42,8 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,48 +57,40 @@ class MainFragment : Fragment() {
     private fun registerLiveData() {
         weatherItems.observe(viewLifecycleOwner) { items ->
             items.forEach { item ->
-                // PTY : 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4), 빗방울(5), 빗방울/눈날림(6), 눈날림(7)
                 if (item.category == "PTY") { // 현재 날씨 상태 : PTY
                     val state = item.obsrValue.toInt()
                     Log.d("TAG", ": $state")
 
                     // 날씨에 따라 UI 갱신
-                    updateTemperature(state)
+                    updateWeather(state)
 
-                }
-                else if(item.category == "T1H") { // 온도
+                } else if (item.category == "T1H") { // 온도
                     val temperature = item.obsrValue
                     Log.d("TAG", "온도: $temperature")
+                    updateTemperature(temperature) // 온도 수치 갱신
                 }
             }
         }
     }
 
-    private fun updateTemperature(state: Int) {
+    private fun updateTemperature(temperature: String) {
+        binding.weatherTv.text = binding.weatherTv.text.toString() + " $temperature°C"
+    }
+
+    private fun updateWeather(state: Int) {
+        // PTY : 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4), 빗방울(5), 빗방울/눈날림(6), 눈날림(7)
         when (state) {
             0 -> {
-
+                binding.weatherIv.setImageResource(R.drawable.ic_weather_sunny)
+                binding.weatherTv.text = "맑음"
             }
-            1 -> {
-
+            1, 2, 4, 5, 6 -> {
+                binding.weatherIv.setImageResource(R.drawable.ic_weather_rain)
+                binding.weatherTv.text = "비내림"
             }
-            2 -> {
-
-            }
-            3 -> {
-
-            }
-            4 -> {
-
-            }
-            5 -> {
-
-            }
-            6 -> {
-
-            }
-            7 -> {
-
+            3, 7 -> {
+                binding.weatherIv.setImageResource(R.drawable.ic_weather_snow)
+                binding.weatherTv.text = "눈내림"
             }
         }
     }
