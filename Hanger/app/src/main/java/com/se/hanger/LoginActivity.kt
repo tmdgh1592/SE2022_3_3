@@ -25,7 +25,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.register_btn -> {
-                startActivity(Intent(this, RegisterActivity::class.java))
+                startActivity(
+                    Intent(
+                        this,
+                        RegisterActivity::class.java
+                    ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                )
             }
         }
     }
