@@ -1,8 +1,8 @@
 package com.se.hanger.view.login
 
-import androidx.lifecycle.ViewModel
+import com.se.hanger.view.base.BaseViewModel
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     suspend fun doLogin(id: String, password: String) {
 
