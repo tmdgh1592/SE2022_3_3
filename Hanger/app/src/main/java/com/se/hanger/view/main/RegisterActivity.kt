@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.se.hanger.R
 import com.se.hanger.setStatusBarTransparent
-import com.se.hanger.ui.theme.*
+import com.se.hanger.view.ui.theme.*
 
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.se.hanger.ui.theme
+package com.se.hanger.view.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
