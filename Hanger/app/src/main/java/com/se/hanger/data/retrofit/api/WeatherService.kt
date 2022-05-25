@@ -1,6 +1,6 @@
-package com.se.hanger.retrofit.api
+package com.se.hanger.data.retrofit.api
 
-import com.se.hanger.model.Weather
+import com.se.hanger.data.model.Weather
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

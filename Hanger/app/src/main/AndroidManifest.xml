@@ -17,12 +17,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterActivity"
+            android:name=".view.main.RegisterActivity"
             android:exported="false"
             android:label="@string/title_activity_register"
             android:theme="@style/Theme.Hanger" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".view.main.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".main.MainActivity"
+            android:name="com.se.hanger.view.main.MainActivity"
             android:exported="true">
 
         </activity>

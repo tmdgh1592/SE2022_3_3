@@ -1,11 +1,13 @@
-package com.se.hanger
+package com.se.hanger.view.main
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.se.hanger.R
 import com.se.hanger.databinding.ActivityLoginBinding
+import com.se.hanger.setStatusBarTransparent
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityLoginBinding
