@@ -28,9 +28,9 @@ abstract class BaseActivity<T: ViewDataBinding, S: BaseViewModel> : AppCompatAct
         // Live data를 사용하기 위한 lifecycleOwner 지정
         viewDataBinding?.lifecycleOwner = this@BaseActivity
         // viewModel의 화면 전환 MutableLiveData 감지
-        viewModel.activityToStart.observe(this, {
+        viewModel.activityToStart.observe(this) {
             startActivity(Intent(this, it.first.java))
-        })
+        }
 
         // 기본적으로 onCreate에서 initActivity() 메서드를 실행하기 때문에
         // BaseActivity를 상속받는 액티비티에서는 initActivity만 구현하면 된다.
