@@ -1,4 +1,4 @@
-package com.se.hanger.view.main
+package com.se.hanger.view.login
 
 import android.os.Bundle
 import android.widget.Toast

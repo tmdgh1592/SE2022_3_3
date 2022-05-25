@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.se.hanger.R
 import com.se.hanger.databinding.ActivityLoginBinding
 import com.se.hanger.setStatusBarTransparent
+import com.se.hanger.view.login.RegisterActivity
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityLoginBinding
