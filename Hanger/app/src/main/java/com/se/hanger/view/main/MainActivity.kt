@@ -1,4 +1,4 @@
-package com.se.hanger.view.login
+package com.se.hanger.view.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

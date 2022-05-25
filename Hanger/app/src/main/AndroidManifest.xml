@@ -22,7 +22,7 @@
             android:label="@string/title_activity_register"
             android:theme="@style/Theme.Hanger" />
         <activity
-            android:name=".view.main.LoginActivity"
+            android:name=".view.login.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.se.hanger.view.login.MainActivity"
+            android:name="com.se.hanger.view.main.MainActivity"
             android:exported="true">
 
         </activity>
