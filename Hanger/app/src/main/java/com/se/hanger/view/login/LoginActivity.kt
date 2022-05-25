@@ -10,7 +10,7 @@ import com.se.hanger.databinding.ActivityLoginBinding
 import com.se.hanger.setStatusBarTransparent
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
-    lateinit var binding: ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
