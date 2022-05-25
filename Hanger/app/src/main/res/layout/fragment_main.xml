@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="12dp"
-        tools:context=".main.CalendarFragment">
+        tools:context=".view.main.CalendarFragment">
 
         <ImageView
             android:id="@+id/weather_iv"

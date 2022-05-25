@@ -1,4 +1,4 @@
-package com.se.hanger.main
+package com.se.hanger.view.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.se.hanger.R
 import com.se.hanger.databinding.FragmentMainBinding
-import com.se.hanger.model.Weather
-import com.se.hanger.retrofit.RetrofitClient
-import com.se.hanger.retrofit.api.WeatherService
+import com.se.hanger.data.model.Weather
+import com.se.hanger.data.retrofit.RetrofitClient
+import com.se.hanger.data.retrofit.api.WeatherService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

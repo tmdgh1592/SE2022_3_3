@@ -1,4 +1,4 @@
-package com.se.hanger.main
+package com.se.hanger.view.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.material.tabs.TabLayoutMediator
 import com.se.hanger.R
-import com.se.hanger.adapter.MainViewPagerAdapter
+import com.se.hanger.view.adapter.MainViewPagerAdapter
 import com.se.hanger.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
