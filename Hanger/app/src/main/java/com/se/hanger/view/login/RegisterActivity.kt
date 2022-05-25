@@ -30,11 +30,14 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import com.se.hanger.R
 import com.se.hanger.setStatusBarTransparent
 import com.se.hanger.view.ui.theme.*
 
 class RegisterActivity : ComponentActivity() {
+    val viewModel: RegisterViewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setStatusBarTransparent()
