@@ -592,7 +592,7 @@
 															"top": 47,
 															"width": 108.25537109375,
 															"height": 13,
-															"text": "Cloth DB(Actor)"
+															"text": "ClothController"
 														},
 														{
 															"_type": "LabelView",
@@ -1357,7 +1357,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGA9waaqcczrEs="
 									},
-									"name": "Cloth DB(Actor)",
+									"name": "ClothController",
 									"represent": {
 										"$ref": "AAAAAAGA9w5PW8gjBU4="
 									},
@@ -2099,7 +2099,7 @@
 															"top": 47,
 															"width": 108.25537109375,
 															"height": 13,
-															"text": "Cloth DB(Actor)"
+															"text": "ClothController"
 														},
 														{
 															"_type": "LabelView",
@@ -2755,7 +2755,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGA9yW0bMnrKDY="
 									},
-									"name": "Cloth DB(Actor)",
+									"name": "ClothController",
 									"represent": {
 										"$ref": "AAAAAAGA9yuE+sybfkw="
 									},
@@ -3489,7 +3489,7 @@
 															"top": 47,
 															"width": 108.25537109375,
 															"height": 13,
-															"text": "Cloth DB(Actor)"
+															"text": "ClothController"
 														},
 														{
 															"_type": "LabelView",
@@ -4145,7 +4145,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGA9zDMDdPbP8Y="
 									},
-									"name": "Cloth DB(Actor)",
+									"name": "ClothController",
 									"represent": {
 										"$ref": "AAAAAAGA9zDMDdQnKaM="
 									},
@@ -4657,7 +4657,7 @@
 															"top": 47,
 															"width": 135,
 															"height": 13,
-															"text": "Cloth DB(Actor)"
+															"text": "ClothController"
 														},
 														{
 															"_type": "LabelView",
@@ -5901,7 +5901,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGA9zRJntToeqc="
 									},
-									"name": "Cloth DB(Actor)",
+									"name": "ClothController",
 									"represent": {
 										"$ref": "AAAAAAGA9zxKr9WzX3g="
 									},
@@ -5958,8 +5958,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGA9zRJntTntug="
 							},
-							"name": "Role4",
-							"type": ""
+							"name": "Role4"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -6542,7 +6541,7 @@
 															"top": 47,
 															"width": 111,
 															"height": 13,
-															"text": "Cloth DB(Actor)"
+															"text": "ClothController"
 														},
 														{
 															"_type": "LabelView",
@@ -7555,7 +7554,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGA9z+OLNYm+Rw="
 									},
-									"name": "Cloth DB(Actor)",
+									"name": "ClothController",
 									"represent": {
 										"$ref": "AAAAAAGA90UCRdd9C1w="
 									},
@@ -7600,8 +7599,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGA9z+OLNYlZuY="
 							},
-							"name": "Role4",
-							"type": ""
+							"name": "Role4"
 						}
 					]
 				}
