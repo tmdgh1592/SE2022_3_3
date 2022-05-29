@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.se.hanger.R
-import com.se.hanger.databinding.FragmentMainBinding
 import com.se.hanger.data.model.Weather
 import com.se.hanger.data.retrofit.RetrofitClient
 import com.se.hanger.data.retrofit.api.WeatherService
+import com.se.hanger.databinding.FragmentMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
