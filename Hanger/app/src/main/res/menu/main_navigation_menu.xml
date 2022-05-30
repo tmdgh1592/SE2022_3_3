@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/spring"
+            android:title="봄"
+            />
+        <item
+            android:id="@+id/summer"
+            android:title="여름"
+            />
+        <item
+            android:id="@+id/fall"
+            android:title="가을"
+            />
+        <item
+            android:id="@+id/winter"
+            android:title="겨울"
+            />
+    </group>
+</menu>

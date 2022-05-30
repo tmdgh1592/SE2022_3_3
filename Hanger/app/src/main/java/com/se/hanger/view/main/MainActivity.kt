@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.se.hanger.R
 import com.se.hanger.view.adapter.MainViewPagerAdapter
 import com.se.hanger.databinding.ActivityMainBinding
+import com.se.hanger.setStatusBarTransparent
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewPagerAdapter = MainViewPagerAdapter(this)
 

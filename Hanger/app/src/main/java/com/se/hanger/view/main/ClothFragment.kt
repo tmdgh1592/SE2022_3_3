@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SlidingDrawer
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.navigation.NavigationView
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
 import com.se.hanger.data.model.Weather
@@ -28,7 +30,8 @@ import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ClothFragment : Fragment(), View.OnClickListener {
+class ClothFragment : Fragment(), View.OnClickListener,
+    NavigationView.OnNavigationItemSelectedListener {
 
     private var retrofit = RetrofitClient.getRetrofit()
     private var job = Job()
@@ -66,6 +69,7 @@ class ClothFragment : Fragment(), View.OnClickListener {
     private fun setClickListener() {
         with(binding) {
             weatherBtn.setOnClickListener(this@ClothFragment)
+            menuBtn.setOnClickListener(this@ClothFragment)
         }
     }
 
@@ -173,7 +177,20 @@ class ClothFragment : Fragment(), View.OnClickListener {
                 intent.putExtra("temp", temperature)
                 startActivity(intent)
             }
+            R.id.menu_btn -> {
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
         }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.spring -> {}
+            R.id.summer -> {}
+            R.id.fall -> {}
+            R.id.winter -> {}
+        }
+        return false
     }
 
 }

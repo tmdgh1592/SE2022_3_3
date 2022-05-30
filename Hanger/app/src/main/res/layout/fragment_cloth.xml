@@ -7,45 +7,79 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main_container"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="12dp"
-        tools:context=".view.main.CalendarFragment">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/weather_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/ripple_round_rectangle"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="6dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="12dp"
+            tools:context=".view.main.CalendarFragment">
 
             <ImageView
-                android:id="@+id/weather_iv"
+                android:id="@+id/menu_btn"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
-                android:layout_marginRight="8dp"
-                tools:src="@color/hazyBrown" />
+                android:layout_marginTop="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:src="@drawable/ic_menu"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/hyperBrown" />
 
-            <TextView
-                android:id="@+id/weather_tv"
+            <LinearLayout
+                android:id="@+id/weather_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:text="23도 맑음" />
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ripple_round_rectangle"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="6dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/weather_iv"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="8dp"
+                    tools:src="@color/hazyBrown" />
+
+                <TextView
+                    android:id="@+id/weather_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:text="23도 맑음" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/category_view"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:background="@color/black"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--navigation drawer-->
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/main_navigation_menu" />
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
