@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -63,6 +65,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
         // 데이터를 가져올 경우 갱신할 UI를 위한 LiveData
         registerLiveData()
         setClickListener() // 클릭 리스너 설정
+        setDrawerToggle() // Drawer 열리고 닫힐 때 설정
     }
 
 
@@ -70,6 +73,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
         with(binding) {
             weatherBtn.setOnClickListener(this@ClothFragment)
             menuBtn.setOnClickListener(this@ClothFragment)
+            navigationView.setNavigationItemSelectedListener(this@ClothFragment)
         }
     }
 
@@ -183,14 +187,79 @@ class ClothFragment : Fragment(), View.OnClickListener,
         }
     }
 
+    private fun setDrawerToggle() {
+        val drawerToggle = object : ActionBarDrawerToggle(
+            requireActivity(), binding.drawerLayout, 0, 0
+        ) {
+            // Drawer 열리고 닫힐 때, 계절 선택으로 초기화
+            override fun onDrawerOpened(drawerView: View) {
+                super.onDrawerOpened(drawerView)
+                changeDrawerMenu(R.menu.navigation_season_menu)
+            }
+
+            override fun onDrawerClosed(drawerView: View) {
+                super.onDrawerClosed(drawerView)
+                changeDrawerMenu(R.menu.navigation_season_menu)
+            }
+        }
+
+        binding.drawerLayout.addDrawerListener(drawerToggle)
+    }
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.spring -> {}
-            R.id.summer -> {}
-            R.id.fall -> {}
-            R.id.winter -> {}
+            // Season
+            R.id.spring -> {
+                changeDrawerMenu(R.menu.navigation_clothes_menu)
+            }
+            R.id.summer -> {
+                changeDrawerMenu(R.menu.navigation_clothes_menu)
+            }
+            R.id.fall -> {
+                changeDrawerMenu(R.menu.navigation_clothes_menu)
+            }
+            R.id.winter -> {
+                Toast.makeText(requireContext(), "하이", Toast.LENGTH_SHORT).show()
+                changeDrawerMenu(R.menu.navigation_clothes_menu)
+            }
+
+            // Clothes
+            R.id.top -> {
+                closeDrawer()
+            }
+            R.id.outer -> {
+                closeDrawer()
+            }
+            R.id.pants -> {
+                closeDrawer()
+            }
+            R.id.one_piece -> {
+                closeDrawer()
+            }
+            R.id.skirt -> {
+                closeDrawer()
+            }
+            R.id.shoes -> {
+                closeDrawer()
+            }
+            R.id.under_wear -> {
+                closeDrawer()
+            }
+            R.id.accessory -> {
+                closeDrawer()
+            }
         }
         return false
+    }
+
+    private fun closeDrawer() {
+        binding.drawerLayout.closeDrawers()
+    }
+
+    private fun changeDrawerMenu(menuId: Int) {
+        binding.navigationView.menu.clear()
+        binding.navigationView.inflateMenu(menuId)
+        binding.navigationView.invalidate()
     }
 
 }
