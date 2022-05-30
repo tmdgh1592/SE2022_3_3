@@ -40,7 +40,7 @@
                 android:id="@+id/calendar_tab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:icon="@drawable/ic_calendar" />
+                android:icon="@drawable/ic_weather_calendar" />
         </com.google.android.material.tabs.TabLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

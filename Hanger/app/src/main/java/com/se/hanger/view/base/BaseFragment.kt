@@ -18,7 +18,7 @@ abstract class BaseFragment<T : ViewDataBinding, S : BaseViewModel> : Fragment()
 
     abstract val layoutResId: Int
     abstract val viewModel: S
-    abstract fun initActivity()
+    abstract fun initFragment()
     val binding: T by lazy {
         getViewDataBinding()!!
     }
@@ -32,16 +32,16 @@ abstract class BaseFragment<T : ViewDataBinding, S : BaseViewModel> : Fragment()
         // Live data를 사용하기 위한 lifecycleOwner 지정
         viewDataBinding?.lifecycleOwner = viewLifecycleOwner
         // viewModel의 화면 전환 MutableLiveData 감지
-        viewModel.activityToStart.observe(requireActivity(), {
+        viewModel.activityToStart.observe(requireActivity()) {
             startActivity(Intent(requireContext(), it.first.java))
-        })
+        }
 
         return viewDataBinding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initActivity()
+        initFragment()
     }
 
     override fun onDestroyView() {

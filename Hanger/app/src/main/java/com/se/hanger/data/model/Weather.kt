@@ -3,6 +3,7 @@ package com.se.hanger.data.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Weather(
     @SerializedName("response")
@@ -58,7 +59,7 @@ data class Weather(
                     @SerializedName("obsrValue")
                     @Expose
                     val obsrValue: String
-                )
+                ): Serializable
             }
         }
 
