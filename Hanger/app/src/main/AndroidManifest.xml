@@ -24,8 +24,8 @@
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".view.weather.WeatherActivity" />
         <activity
             android:name="com.se.hanger.view.main.MainActivity"
             android:exported="true">

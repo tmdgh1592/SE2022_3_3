@@ -12,7 +12,7 @@ import com.se.hanger.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewPagerAdapter: MainViewPagerAdapter
-    private val tabIcons = mutableListOf<Int>(R.drawable.ic_home, R.drawable.ic_calendar)
+    private val tabIcons = mutableListOf<Int>(R.drawable.ic_home, R.drawable.ic_weather_calendar)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
