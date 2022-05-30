@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.se.hanger.R
+import com.se.hanger.data.db.ClothDatabase
 import com.se.hanger.data.model.Weather
 import com.se.hanger.data.retrofit.RetrofitClient
 import com.se.hanger.data.retrofit.api.WeatherService
@@ -34,6 +35,7 @@ class ClothFragment : Fragment(), View.OnClickListener {
     private val weatherItems: LiveData<List<Weather.Response.Body.Items.Item>> = _weatherItems
     lateinit var binding: FragmentClothBinding
     private var temperature: String? = null // 온도
+    private lateinit var clothDB: ClothDatabase
 
     companion object {
         // 실수 입력 불가 e.g. 37.651234
@@ -46,6 +48,7 @@ class ClothFragment : Fragment(), View.OnClickListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentClothBinding.inflate(inflater)
+        clothDB = ClothDatabase.getInstance(requireContext())!!
         return binding.root
     }
 
