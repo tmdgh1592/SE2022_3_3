@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ClothAddActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.login.RegisterActivity"
             android:exported="false"
             android:label="@string/title_activity_register"
@@ -24,7 +27,7 @@
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.weather.WeatherActivity" />
         <activity
             android:name="com.se.hanger.view.main.MainActivity"

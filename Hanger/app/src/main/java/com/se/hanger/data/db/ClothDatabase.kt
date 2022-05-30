@@ -8,11 +8,13 @@ import androidx.room.TypeConverters
 import com.google.gson.Gson
 import com.se.hanger.data.db.converter.CategoryListTypeConverter
 import com.se.hanger.data.db.converter.PhotoListTypeConverter
+import com.se.hanger.data.db.converter.TagDao
 import com.se.hanger.data.db.converter.TagListTypeConverter
 import com.se.hanger.data.model.Cloth
+import com.se.hanger.data.model.Tag
 
 
-@Database(entities = [Cloth::class], version = 7)
+@Database(entities = [Cloth::class, Tag::class], version = 7)
 @TypeConverters(
     value = [
         PhotoListTypeConverter::class,
@@ -23,6 +25,7 @@ import com.se.hanger.data.model.Cloth
 
 abstract class ClothDatabase : RoomDatabase() {
     abstract fun clothDao(): ClothDao
+    abstract fun tagDao(): TagDao
 
     companion object {
         private var instance: ClothDatabase? = null
