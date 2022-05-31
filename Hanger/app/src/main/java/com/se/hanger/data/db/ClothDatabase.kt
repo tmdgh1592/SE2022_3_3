@@ -11,10 +11,11 @@ import com.se.hanger.data.db.converter.PhotoListTypeConverter
 import com.se.hanger.data.db.converter.TagDao
 import com.se.hanger.data.db.converter.TagListTypeConverter
 import com.se.hanger.data.model.Cloth
+import com.se.hanger.data.model.DailyPhoto
 import com.se.hanger.data.model.Tag
 
 
-@Database(entities = [Cloth::class, Tag::class], version = 7)
+@Database(entities = [Cloth::class, Tag::class, DailyPhoto::class], version = 7)
 @TypeConverters(
     value = [
         PhotoListTypeConverter::class,
@@ -26,6 +27,7 @@ import com.se.hanger.data.model.Tag
 abstract class ClothDatabase : RoomDatabase() {
     abstract fun clothDao(): ClothDao
     abstract fun tagDao(): TagDao
+    abstract fun dailyPhotoDao(): DailyPhotoDao
 
     companion object {
         private var instance: ClothDatabase? = null
