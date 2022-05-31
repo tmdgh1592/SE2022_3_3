@@ -15,5 +15,5 @@ interface DailyPhotoDao {
     fun delete(dailyPhoto: DailyPhoto)
 
     @Query("SELECT * FROM DailyPhotoTable")
-    fun getDailyPhotos()
+    fun getDailyPhotos(): List<DailyPhoto>
 }

@@ -6,10 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.google.gson.Gson
-import com.se.hanger.data.db.converter.CategoryListTypeConverter
-import com.se.hanger.data.db.converter.PhotoListTypeConverter
-import com.se.hanger.data.db.converter.TagDao
-import com.se.hanger.data.db.converter.TagListTypeConverter
+import com.se.hanger.data.db.converter.*
 import com.se.hanger.data.model.Cloth
 import com.se.hanger.data.model.DailyPhoto
 import com.se.hanger.data.model.Tag
@@ -21,6 +18,8 @@ import com.se.hanger.data.model.Tag
         PhotoListTypeConverter::class,
         CategoryListTypeConverter::class,
         TagListTypeConverter::class,
+        PhotoTypeConverter::class,
+        DateTypeConverter::class
     ]
 )
 
@@ -46,6 +45,8 @@ abstract class ClothDatabase : RoomDatabase() {
                         .addTypeConverter(PhotoListTypeConverter(gson))
                         .addTypeConverter(CategoryListTypeConverter(gson))
                         .addTypeConverter(TagListTypeConverter(gson))
+                        .addTypeConverter(PhotoTypeConverter(gson))
+                        .addTypeConverter(DateTypeConverter(gson))
                         .allowMainThreadQueries().build()
                 }
             }

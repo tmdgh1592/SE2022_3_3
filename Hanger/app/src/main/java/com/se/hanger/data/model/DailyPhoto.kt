@@ -10,5 +10,5 @@ data class DailyPhoto(
     var photoDate: Date
 ) {
     @PrimaryKey(autoGenerate = true)
-    private val id: Int = 0
+    var id: Int = 0
 }
