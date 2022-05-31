@@ -9,11 +9,11 @@ import com.se.hanger.data.model.DailyPhoto
 @Dao
 interface DailyPhotoDao {
     @Insert
-    fun insert(dailyPhoto: DailyPhoto)
+    suspend fun insert(dailyPhoto: DailyPhoto)
 
     @Delete
-    fun delete(dailyPhoto: DailyPhoto)
+    suspend fun delete(dailyPhoto: DailyPhoto)
 
     @Query("SELECT * FROM DailyPhotoTable")
-    fun getDailyPhotos(): List<DailyPhoto>
+    suspend fun getDailyPhotos(): List<DailyPhoto>
 }

@@ -3,11 +3,13 @@ package com.se.hanger.view.calendar
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.gson.Gson
 import com.prolificinteractive.materialcalendarview.*
 import com.prolificinteractive.materialcalendarview.format.ArrayWeekDayFormatter
 import com.prolificinteractive.materialcalendarview.format.MonthArrayTitleFormatter
@@ -15,9 +17,11 @@ import com.prolificinteractive.materialcalendarview.format.TitleFormatter
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
 import com.se.hanger.databinding.FragmentCalendarBinding
+import com.se.hanger.view.calendar.decorator.DailyDecorator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 
 
@@ -50,10 +54,24 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
     private fun updateDots() {
         CoroutineScope(Dispatchers.IO).launch {
             val dailyPhotoList = clothDB.dailyPhotoDao().getDailyPhotos()
+            val photoDates = mutableListOf<CalendarDay>()
 
+            // 캘린더에 점을 찍을 날짜를 가져온다 (사진을 저장한 날짜)
             dailyPhotoList.forEach { dailyPhoto ->
                 val day = CalendarDay.from(dailyPhoto.photoDate)
-                print(day)
+                Log.d("TAG", "updateDots: " + day)
+                photoDates.add(day)
+            }
+
+            // 가져온 날짜에 점을 찍는다.
+            withContext(Dispatchers.Main) {
+                binding.calendarView.addDecorator(
+                    DailyDecorator(
+                        requireContext(),
+                        photoDates,
+                        DateColor.PRIMARY
+                    )
+                )
             }
         }
     }
@@ -112,12 +130,13 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
         date: CalendarDay,
         selected: Boolean
     ) {
+        val localDate = date.date // 캘린더 선택 날짜
         val dailyPhotoDialog = DailyPhotoDialogFragment().apply {
             isCancelable = false
+            arguments = Bundle().apply { putString("date", Gson().toJson(localDate)) }
         }
         parentFragmentManager.beginTransaction().add(dailyPhotoDialog, DAILY_PHOTO_FRAGMENT_TAG)
             .commit()
 
-        val localDate = date.date // 캘린더 선택 날짜
     }
 }
