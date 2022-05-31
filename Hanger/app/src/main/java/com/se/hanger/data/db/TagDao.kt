@@ -1,4 +1,4 @@
-package com.se.hanger.data.db.converter
+package com.se.hanger.data.db
 
 import androidx.room.Dao
 import androidx.room.Delete
