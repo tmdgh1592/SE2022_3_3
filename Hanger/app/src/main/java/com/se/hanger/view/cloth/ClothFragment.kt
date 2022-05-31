@@ -1,4 +1,4 @@
-package com.se.hanger.view.main
+package com.se.hanger.view.cloth
 
 import android.annotation.SuppressLint
 import android.content.Intent
