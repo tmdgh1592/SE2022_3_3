@@ -25,7 +25,7 @@ import kotlinx.coroutines.withContext
 import org.threeten.bp.LocalDate
 
 
-class CalendarFragment : Fragment(), OnDateSelectedListener {
+class CalendarFragment : Fragment(), OnDateSelectedListener, OnPhotoChangedListener {
 
     private lateinit var binding: FragmentCalendarBinding
     private lateinit var clothDB: ClothDatabase
@@ -46,18 +46,28 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setCalendar() // 캘린더 기본 설정
-        with(binding) {
-            updateDots()
-        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        updateDots()
+    }
+
+
+    // DB에서 사진 데이터를 가져와서
+    // 사진을 저장한 캘린더 날짜에 점을 찍는다.
     private fun updateDots() {
+        // 데코레이터 초기화
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.calendarView.removeDecorators()
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             val dailyPhotoList = clothDB.dailyPhotoDao().getDailyPhotos()
             val photoDates = mutableListOf<CalendarDay>()
 
             // 캘린더에 점을 찍을 날짜를 가져온다 (사진을 저장한 날짜)
-            dailyPhotoList.forEach { dailyPhoto ->
+            dailyPhotoList?.forEach { dailyPhoto ->
                 val day = CalendarDay.from(dailyPhoto.photoDate)
                 Log.d("TAG", "updateDots: " + day)
                 photoDates.add(day)
@@ -130,13 +140,26 @@ class CalendarFragment : Fragment(), OnDateSelectedListener {
         date: CalendarDay,
         selected: Boolean
     ) {
-        val localDate = date.date // 캘린더 선택 날짜
+        val localDate = date.date // 전달할 캘린더 선택 날짜
+        // 의류 CRUD를 할 Fragment
         val dailyPhotoDialog = DailyPhotoDialogFragment().apply {
             isCancelable = false
             arguments = Bundle().apply { putString("date", Gson().toJson(localDate)) }
+            setOnPhotoChangedListener(this@CalendarFragment)
         }
-        parentFragmentManager.beginTransaction().add(dailyPhotoDialog, DAILY_PHOTO_FRAGMENT_TAG)
-            .commit()
+        dailyPhotoDialog.show(parentFragmentManager, DAILY_PHOTO_FRAGMENT_TAG)
 
     }
+
+    override fun onChanged(isChanged: Boolean) {
+        // Dialog가 닫힐 때, 캘린더에 있는 점들 갱신
+        if (isChanged) {
+            updateDots()
+        }
+    }
+
+}
+
+interface OnPhotoChangedListener {
+    fun onChanged(isChanged: Boolean)
 }

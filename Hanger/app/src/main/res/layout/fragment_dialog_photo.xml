@@ -39,6 +39,15 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/sample_cloth" />
 
+                <ImageView
+                    android:id="@+id/delete_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="2dp"
+                    android:src="@drawable/ic_minus"
+                    app:tint="@color/gray200" />
 
                 <ImageView
                     android:id="@+id/gallery_btn"
@@ -46,6 +55,7 @@
                     android:layout_height="25dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="2dp"
                     android:src="@drawable/ic_plus"
                     app:tint="@color/colorPrimary" />
 

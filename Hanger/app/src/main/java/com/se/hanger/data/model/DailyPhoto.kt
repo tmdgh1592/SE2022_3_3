@@ -6,8 +6,8 @@ import org.threeten.bp.LocalDate
 
 @Entity(tableName = "DailyPhotoTable")
 data class DailyPhoto(
-    var photo: Photo,
-    var photoDate: LocalDate
+    var photo: Photo?,
+    var photoDate: LocalDate?
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0

@@ -12,7 +12,7 @@ import com.se.hanger.data.model.DailyPhoto
 import com.se.hanger.data.model.Tag
 
 
-@Database(entities = [Cloth::class, Tag::class, DailyPhoto::class], version = 7)
+@Database(entities = [Cloth::class, Tag::class, DailyPhoto::class], version = 8)
 @TypeConverters(
     value = [
         PhotoListTypeConverter::class,
