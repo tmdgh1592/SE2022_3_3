@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/hyperBrown</color>
+    <color name="colorPrimaryDark">@color/hyperBrown</color>
+    <color name="colorAccent">@color/strongBrown</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grayWhite">#E6E6E6</color>
+
+    <color name="paleBrown">#E5D3B3</color>
+    <color name="hazyBrown">#D2B48C</color>
+    <color name="normalBrown">#B99976</color>
+    <color name="strongBrown">#987554</color>
+    <color name="hyperBrown">#664229</color>
+
+    <color name="gray100">#FCFCFC</color>
+    <color name="gray500">#AFAFAF</color>
+
+    <color name="loginBtnColor">#1F5BF3</color>
+</resources>
