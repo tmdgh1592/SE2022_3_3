@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="12dp"
-            tools:context=".view.main.CalendarFragment">
+            tools:context=".view.calendar.CalendarFragment">
 
             <ImageView
                 android:id="@+id/menu_btn"
