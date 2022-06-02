@@ -9,10 +9,11 @@ import com.google.gson.Gson
 import com.se.hanger.data.db.converter.*
 import com.se.hanger.data.model.Cloth
 import com.se.hanger.data.model.DailyPhoto
+import com.se.hanger.data.model.Member
 import com.se.hanger.data.model.Tag
 
 
-@Database(entities = [Cloth::class, Tag::class, DailyPhoto::class], version = 8)
+@Database(entities = [Cloth::class, Tag::class, DailyPhoto::class, Member::class], version = 9)
 @TypeConverters(
     value = [
         PhotoListTypeConverter::class,
@@ -27,6 +28,7 @@ abstract class ClothDatabase : RoomDatabase() {
     abstract fun clothDao(): ClothDao
     abstract fun tagDao(): TagDao
     abstract fun dailyPhotoDao(): DailyPhotoDao
+    abstract fun userDao(): MemberDao
 
     companion object {
         private var instance: ClothDatabase? = null
