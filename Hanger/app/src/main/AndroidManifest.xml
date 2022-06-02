@@ -24,16 +24,18 @@
         <activity
             android:name=".view.login.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".view.weather.WeatherActivity" />
-        <activity
-            android:name="com.se.hanger.view.main.MainActivity"
-            android:exported="true">
+            android:windowSoftInputMode="adjustPan">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".view.weather.WeatherActivity" />
+        <activity
+            android:name="com.se.hanger.view.main.MainActivity"
+            android:exported="true">
         </activity>
     </application>
 
