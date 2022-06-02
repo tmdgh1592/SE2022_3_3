@@ -14,6 +14,9 @@ interface MemberDao {
     @Delete
     suspend fun delete(user: Member)
 
+    @Query("SELECT * FROM MemberTable WHERE username = :username AND password = :password")
+    suspend fun findByUsernameAndPw(username: String, password: String): Member?
+
     @Query("SELECT * FROM MemberTable")
     suspend fun getUsers(): List<Member>
 }
