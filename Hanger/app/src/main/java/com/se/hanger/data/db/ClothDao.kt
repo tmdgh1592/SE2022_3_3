@@ -9,11 +9,11 @@ import com.se.hanger.data.model.Cloth
 @Dao
 interface ClothDao {
     @Insert
-    fun insert(cloth: Cloth)
+    suspend fun insert(cloth: Cloth)
 
     @Delete
-    fun delete(cloth: Cloth)
+    suspend fun delete(cloth: Cloth)
 
     @Query("SELECT * FROM ClothTable")
-    fun getClothes(): List<Cloth>
+    suspend fun getClothes(): MutableList<Cloth>
 }

@@ -17,15 +17,14 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.material.navigation.NavigationView
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
+import com.se.hanger.data.model.Cloth
 import com.se.hanger.data.model.Weather
 import com.se.hanger.data.retrofit.RetrofitClient
 import com.se.hanger.data.retrofit.api.WeatherService
 import com.se.hanger.databinding.FragmentClothBinding
+import com.se.hanger.view.adapter.ClothRvAdapter
 import com.se.hanger.view.weather.WeatherActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.async
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +41,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
     lateinit var binding: FragmentClothBinding
     private var temperature: String? = null // 온도
     private lateinit var clothDB: ClothDatabase
+    private lateinit var clothAdapter: ClothRvAdapter
 
     companion object {
         // 실수 입력 불가 e.g. 37.651234
@@ -66,6 +66,31 @@ class ClothFragment : Fragment(), View.OnClickListener,
         registerLiveData()
         setClickListener() // 클릭 리스너 설정
         setDrawerToggle() // Drawer 열리고 닫힐 때 설정
+        setRecyclerView() // 리사이클러뷰 설정
+    }
+
+    private fun setRecyclerView() {
+        clothAdapter = ClothRvAdapter(
+            mutableListOf()
+        )
+        // 의류 삭제 클릭 리스너
+        clothAdapter.setClickListener(object: OnClickDeleteButton{
+            override fun delete(item: Cloth) {
+                CoroutineScope(Dispatchers.IO).launch {
+                    clothDB.clothDao().delete(item)
+                    loadClothes()
+                }
+            }
+        })
+
+        binding.clothRv.adapter = clothAdapter
+        loadClothes() // DB에서 Cloth를 불러와 적용한다.
+    }
+
+    private fun loadClothes() {
+        CoroutineScope(Dispatchers.IO).launch {
+            clothAdapter.updateItem(clothDB.clothDao().getClothes())
+        }
     }
 
 
@@ -262,4 +287,8 @@ class ClothFragment : Fragment(), View.OnClickListener,
         binding.navigationView.invalidate()
     }
 
+}
+
+interface OnClickDeleteButton {
+    fun delete(item: Cloth)
 }

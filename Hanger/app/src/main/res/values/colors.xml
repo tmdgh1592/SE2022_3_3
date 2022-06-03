@@ -15,6 +15,7 @@
 
     <color name="gray100">#FCFCFC</color>
     <color name="gray200">#EAEAEA</color>
+    <color name="gray400">#D1D1D1</color>
     <color name="gray500">#AFAFAF</color>
 
     <color name="loginBtnColor">#1F5BF3</color>
