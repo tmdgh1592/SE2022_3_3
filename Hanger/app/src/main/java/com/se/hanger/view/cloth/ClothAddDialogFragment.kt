@@ -133,4 +133,4 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                 }
             }
     }
-}x
+}
