@@ -40,7 +40,6 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
         binding = FragmentDialogClothAddBinding.inflate(inflater)
         clothDB = ClothDatabase.getInstance(requireContext())!!
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
-        date = Gson().fromJson(arguments?.getString("date"), LocalDate::class.java)
         adapter = TagAdapter(ArrayList())
         binding.tagRecyclerView.adapter = adapter
         return binding.root
@@ -134,4 +133,4 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                 }
             }
     }
-}
+}x
