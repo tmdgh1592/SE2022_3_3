@@ -48,6 +48,7 @@
 
 
                 <ImageView
+                    android:id="@+id/cloth_img_add_btn"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_alignParentTop="true"
@@ -74,7 +75,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@+id/photo_add_btn" />
 
-        <TextView
+        <EditText
             android:id="@+id/size_select_btn"
             android:layout_width="0dp"
             android:layout_height="35dp"
@@ -119,6 +120,7 @@
             app:layout_constraintTop_toBottomOf="@+id/photo_add_btn">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tag_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="8"
