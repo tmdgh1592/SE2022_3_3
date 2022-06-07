@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.github.drjacky.imagepicker.ImagePicker
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
@@ -30,6 +31,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
     private lateinit var date: LocalDate
     private lateinit var adapter: TagAdapter
     private var photo: Photo? = null
+    private var hasPhoto = false // 사진 추가 여부
     private var galleryLauncher: ActivityResultLauncher<Intent>? = null
 
     override fun onCreateView(
@@ -83,31 +85,45 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         .galleryOnly()
                         .createIntent()
                 )
+                hasPhoto = true
+            }
+
+            /* 취소 버튼 로직*/
+            cancelBtn.setOnClickListener {
+                dismiss()
             }
 
             /* 추가 버튼 이벤트 설정*/
             clothAddBtn.setOnClickListener {
-
                 // DB 는 IO 작업이기 때문에 scope 열어줌
                 // TODO 각종 ui 에서 데이터 가져와서 설정해주자
-                CoroutineScope(Dispatchers.IO).launch {
-                    val cloth = Cloth(
-                        buyUrl = buyerEt.text.toString(),
-                        clothSize = "",
-                        clothName = "",
-                        clothMemo = "",
-                        clothPhoto = "",
-                        dailyPhoto = listOf(photo!!),
-                        tags = adapter.dataSet.map { data ->
-                            Tag("", data)
-                        },
-                        categories = listOf(Category(Season.SPRING, CategoryCloth.ACCESSORY))
-                    )
-                    clothDB.clothDao().insert(cloth)
+                if (hasPhoto){
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val cloth = Cloth(
+                            buyUrl = buyerEt.text.toString(),
+                            clothSize = sizeSelectBtn.text.toString(),
+                            clothName = "",
+                            clothMemo = memoEt.text.toString(),
+                            clothPhoto = photoIv.toString(),
+                            dailyPhoto = listOf(photo!!),
+                            tags = adapter.dataSet.map { data ->
+                                Tag("", data)
+                            },
+                            categories = listOf(Category(Season.SPRING, CategoryCloth.ACCESSORY))
+                        )
+                        clothDB.clothDao().insert(cloth)
+                    }
+                }
+                else{
+                    showSnackBar("의류 사진을 선택해주세요!")
                 }
             }
 
         }
+    }
+
+    private fun showSnackBar(msg: String) {
+        Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG).show()
     }
 
     override fun onClick(view: View?) {

@@ -64,17 +64,24 @@
 
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/cloth_rv"
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="12dp"
-                android:scrollbars="none"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/weather_btn"
-                app:spanCount="2"
-                tools:listitem="@layout/item_cloth" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="35dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cloth_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/weather_btn"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_cloth" />
+            </ScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

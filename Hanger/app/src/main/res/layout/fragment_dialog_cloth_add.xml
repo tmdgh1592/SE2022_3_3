@@ -94,7 +94,7 @@
         <EditText
             android:id="@+id/memo_et"
             android:layout_width="0dp"
-            android:layout_height="220dp"
+            android:layout_height="150dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="12dp"
             android:background="@drawable/round_white_gray_12"
@@ -102,20 +102,30 @@
             android:hint="내용을 입력해주세요"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
-            android:textColorHint="@color/gray500"
             android:textColor="@color/black"
+            android:textColorHint="@color/gray500"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/size_select_btn" />
 
+        <Spinner
+            android:id="@+id/category_add"
+            android:layout_width="240dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/memo_et"
+            app:layout_constraintStart_toStartOf="@+id/memo_et"
+            app:layout_constraintTop_toBottomOf="@+id/memo_et" />
+
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="130dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/round_white_gray_12"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@id/memo_et"
+            app:layout_constraintBottom_toBottomOf="@+id/category_add"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_add_btn">
 
@@ -140,13 +150,13 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    android:hint="태그 추가"
-                    android:textSize="14sp"
+                    android:background="@null"
                     android:gravity="left|center"
+                    android:hint="태그 추가"
                     android:paddingLeft="10dp"
-                    android:textColorHint="@color/gray500"
                     android:textColor="@color/black"
-                    android:background="@null" />
+                    android:textColorHint="@color/gray500"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/tag_add_btn"

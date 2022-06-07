@@ -5,11 +5,13 @@
       <map>
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/activity_main.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/activity_weather.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/category_add_spinner.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/fragment_calendar.xml" value="0.17806484295845998" />
-        <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/fragment_cloth.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/fragment_cloth.xml" value="0.33" />
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/fragment_dialog_cloth_add.xml" value="0.25" />
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/fragment_dialog_photo.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/item_cloth.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/wooseok/AndroidStudioProjects/Hanger/app/src/main/res/layout/tag_row_item.xml" value="0.25905797101449274" />
         <entry key="..\:/Users/wooseok/test/test/Hanger/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/wooseok/test/test/Hanger/app/src/main/res/layout/fragment_dialog_cloth_add.xml" value="0.25364583333333335" />
         <entry key="..\:/temp_project/Hanger/app/src/main/res/layout/activity_main.xml" value="0.27309782608695654" />
