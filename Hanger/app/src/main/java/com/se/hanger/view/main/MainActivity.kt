@@ -10,6 +10,9 @@ import com.se.hanger.R
 import com.se.hanger.databinding.ActivityMainBinding
 import com.se.hanger.view.adapter.MainViewPagerAdapter
 import com.se.hanger.view.cloth.ClothAddDialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -47,6 +50,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 supportFragmentManager.beginTransaction().add(clothDialog, CLOTH_FRAGMENT_TAG)
                     .commit()
             }
+        }
+    }
+
+    fun renew() {
+        CoroutineScope(Dispatchers.Main).launch {
+            viewPagerAdapter.notifyDataSetChanged()
         }
     }
 

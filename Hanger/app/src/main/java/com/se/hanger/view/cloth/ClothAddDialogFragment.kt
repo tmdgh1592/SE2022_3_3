@@ -19,6 +19,7 @@ import com.se.hanger.data.model.*
 import com.se.hanger.databinding.FragmentDialogClothAddBinding
 import com.se.hanger.utils.ScreenSizeProvider
 import com.se.hanger.view.adapter.TagAdapter
+import com.se.hanger.view.main.MainActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,7 +75,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
             /* 태그 추가 로직 */
             tagAddBtn.setOnClickListener {
                 adapter.dataSet.add(tagAddEt.text.toString())
-                adapter.notify()
+                adapter.notifyItemChanged(adapter.dataSet.size - 1)
             }
 
             /* 메인 사진 추가 로직 */
@@ -102,9 +103,9 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         val cloth = Cloth(
                             buyUrl = buyerEt.text.toString(),
                             clothSize = sizeSelectBtn.text.toString(),
-                            clothName = "",
+                            clothName = "넣어줘야함",
                             clothMemo = memoEt.text.toString(),
-                            clothPhoto = photoIv.toString(),
+                            clothPhoto = photo?.photoUriString!!,
                             dailyPhoto = listOf(photo!!),
                             tags = adapter.dataSet.map { data ->
                                 Tag("", data)
@@ -112,7 +113,9 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                             categories = listOf(Category(Season.SPRING, CategoryCloth.ACCESSORY))
                         )
                         clothDB.clothDao().insert(cloth)
+                        dismiss()
                     }
+
                 }
                 else{
                     showSnackBar("의류 사진을 선택해주세요!")
