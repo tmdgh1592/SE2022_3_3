@@ -20,8 +20,8 @@ class ClothRvAdapter(val clothList: MutableList<Cloth>) :
 
     inner class ClothViewHolder(val binding: ItemClothBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
-            val clothModel = clothList[adapterPosition]
+        fun bind(position: Int) {
+            val clothModel = clothList[position]
 
             clothModel.let {
                 with(binding) {
@@ -43,7 +43,7 @@ class ClothRvAdapter(val clothList: MutableList<Cloth>) :
     }
 
     override fun onBindViewHolder(holder: ClothViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(position)
     }
 
     override fun getItemCount(): Int {
