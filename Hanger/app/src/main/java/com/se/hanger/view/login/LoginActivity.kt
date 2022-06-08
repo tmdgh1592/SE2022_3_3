@@ -43,6 +43,7 @@ class LoginActivity(
                         RegisterActivity::class.java
                     ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 )
+                finish()
             }
             R.id.login_card_view -> {
                 val username = binding.idEditText.text
