@@ -10,7 +10,7 @@ data class Cloth(
     @SerializedName(value = "clothSize") var clothSize: String,
     @SerializedName(value = "clothName") var clothName: String,
     @SerializedName(value = "clothMemo") var clothMemo: String,
-    @SerializedName(value = "clothPhoto") var clothPhoto: String,
+    @SerializedName(value = "clothPhoto") var clothPhoto: Photo,
     @SerializedName(value = "dailyPhoto") var dailyPhoto: List<Photo>,
     @SerializedName(value = "tags") var tags: List<Tag>,
     @SerializedName(value = "categories") var categories: List<Category>

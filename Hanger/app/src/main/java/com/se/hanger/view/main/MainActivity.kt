@@ -10,6 +10,7 @@ import com.se.hanger.R
 import com.se.hanger.databinding.ActivityMainBinding
 import com.se.hanger.view.adapter.MainViewPagerAdapter
 import com.se.hanger.view.cloth.ClothAddDialogFragment
+import com.se.hanger.view.cloth.ClothFragment
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.add_btn -> {
                 val clothDialog = ClothAddDialogFragment().apply {
                     isCancelable = false
+                    setClothAddListener(object: ClothAddListener{
+                        override fun onAdded() {
+                            (viewPagerAdapter.mainFragmentList[0] as ClothFragment).loadClothes()
+                        }
+                    })
                 }
                 supportFragmentManager.beginTransaction().add(clothDialog, CLOTH_FRAGMENT_TAG)
                     .commit()
@@ -50,5 +56,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+}
 
+interface ClothAddListener {
+    fun onAdded()
 }

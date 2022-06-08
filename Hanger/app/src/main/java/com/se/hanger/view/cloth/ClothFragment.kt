@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -77,10 +78,15 @@ class ClothFragment : Fragment(), View.OnClickListener,
         // 의류 삭제 클릭 리스너
         clothAdapter.setClickListener(object : OnClickDeleteButton {
             override fun delete(item: Cloth) {
-                CoroutineScope(Dispatchers.IO).launch {
-                    clothDB.clothDao().delete(item)
-                    loadClothes()
-                }
+                AlertDialog.Builder(requireContext()).setTitle("의류 삭제")
+                    .setMessage("선택한 의류를 삭제하시겠습니까?")
+                    .setPositiveButton("확인") { _, _ ->
+                        CoroutineScope(Dispatchers.IO).launch {
+                            clothDB.clothDao().delete(item)
+                            loadClothes()
+                        }
+                    }.setNegativeButton("취소") { _, _ -> }
+                    .create().show()
             }
         })
 
@@ -88,7 +94,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
         loadClothes() // DB에서 Cloth를 불러와 적용한다.
     }
 
-    private fun loadClothes() {
+    fun loadClothes() {
         CoroutineScope(Dispatchers.IO).launch {
             val clothes = clothDB.clothDao().getClothes()
             withContext(Dispatchers.Main) {
