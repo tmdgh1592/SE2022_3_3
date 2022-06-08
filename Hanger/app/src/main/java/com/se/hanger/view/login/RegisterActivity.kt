@@ -144,16 +144,28 @@ fun RegisterCardView() {
                 RegisterButton(onClick = {
                     if (userNameInput.value.text.isNotBlank() and passwordInput.value.text.isNotBlank()) {
                         CoroutineScope(Dispatchers.IO).launch {
-                            ClothDatabase.getInstance(context)?.userDao()!!.insert(
-                                Member(
-                                    username = userNameInput.value.text,
-                                    password = passwordInput.value.text
-                                )
-                            )
+                            val isDuplicatedUsername =
+                                ClothDatabase.getInstance(context)?.userDao()!!
+                                    .findByUsername(userNameInput.value.text) != null
 
-                            withContext(Dispatchers.Main) {
-                                Toast.makeText(context, "회원가입을 성공하였습니다!", Toast.LENGTH_SHORT).show()
-                                (context as ComponentActivity).finish()
+                            if (isDuplicatedUsername) { // 유저네임이 중복되는 경우
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(context, "동일한 닉네임이 존재합니다.", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            } else { // 중복되지 않는 경우
+                                ClothDatabase.getInstance(context)?.userDao()!!.insert(
+                                    Member(
+                                        username = userNameInput.value.text,
+                                        password = passwordInput.value.text
+                                    )
+                                )
+
+                                withContext(Dispatchers.Main) {
+                                    Toast.makeText(context, "회원가입을 성공하였습니다!", Toast.LENGTH_SHORT)
+                                        .show()
+                                    (context as ComponentActivity).finish()
+                                }
                             }
                         }
                     } else {
@@ -251,7 +263,7 @@ fun CustomTextField(
             .background(Gray200),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Box() {
+        Box {
             Icon(
                 modifier = Modifier
                     .padding(10.dp),
