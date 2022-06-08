@@ -27,12 +27,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center"
-                android:textColor="@color/gray500"
                 android:layout_marginRight="12dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="회원탈퇴" />
+                android:text="회원탈퇴"
+                android:textColor="@color/gray500" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -59,10 +59,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_white_gray_12"
+                android:imeOptions="actionNext"
                 android:maxLength="12"
                 android:maxLines="1"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
+                android:singleLine="true"
                 android:text="@{member.username}"
                 android:textColor="@color/black"
                 android:textSize="18sp"
@@ -80,6 +82,7 @@
                 android:inputType="textPassword"
                 android:maxLength="20"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:text="@{member.password}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/username_tv"
