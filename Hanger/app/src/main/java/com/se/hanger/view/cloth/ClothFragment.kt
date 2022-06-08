@@ -74,7 +74,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
             mutableListOf()
         )
         // 의류 삭제 클릭 리스너
-        clothAdapter.setClickListener(object: OnClickDeleteButton{
+        clothAdapter.setClickListener(object : OnClickDeleteButton {
             override fun delete(item: Cloth) {
                 CoroutineScope(Dispatchers.IO).launch {
                     clothDB.clothDao().delete(item)
@@ -89,7 +89,10 @@ class ClothFragment : Fragment(), View.OnClickListener,
 
     private fun loadClothes() {
         CoroutineScope(Dispatchers.IO).launch {
-            clothAdapter.updateItem(clothDB.clothDao().getClothes())
+            val clothes = clothDB.clothDao().getClothes()
+            withContext(Dispatchers.Main) {
+                clothAdapter.updateItem(clothes)
+            }
         }
     }
 
