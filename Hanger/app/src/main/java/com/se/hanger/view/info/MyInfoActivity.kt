@@ -36,16 +36,31 @@ class MyInfoActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.doneBtn.setOnClickListener {
-            val updatedMember = binding.member!!.apply {
-                username = binding.usernameTv.text.trim().toString()
-                password = binding.passwordEt.text?.trim().toString()
-            }
+            val username = binding.usernameTv.text.trim().toString()
+            val password = binding.passwordEt.text?.trim().toString()
+
             CoroutineScope(Dispatchers.IO).launch {
-                clothDatabase.userDao().update(updatedMember)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@MyInfoActivity, "정보 수정이 완료되었습니다.", Toast.LENGTH_SHORT)
-                        .show()
-                    finish()
+                val isDuplicatedUsername =
+                    clothDatabase.userDao().findByUsername(username = username) != null
+
+                if (isDuplicatedUsername && (binding.member?.username != username)) { // 유저네임이 중복되는 경우 (단, 본인 닉네임은 예외)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MyInfoActivity, "동일한 닉네임이 존재합니다.", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                } else {
+                    // 업데이트할 Member 객체
+                    val updatedMember = binding.member!!.apply {
+                        this.username = username
+                        this.password = password
+                    }
+
+                    clothDatabase.userDao().update(updatedMember)
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@MyInfoActivity, "정보 수정이 완료되었습니다.", Toast.LENGTH_SHORT)
+                            .show()
+                        finish()
+                    }
                 }
             }
         }
