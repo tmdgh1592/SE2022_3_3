@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/top"
+            android:title="상의" />
+        <item
+            android:id="@+id/outer"
+            android:title="아우터" />
+        <item
+            android:id="@+id/pants"
+            android:title="바지" />
+        <item
+            android:id="@+id/one_piece"
+            android:title="원피스" />
+        <item
+            android:id="@+id/skirt"
+            android:title="스커트" />
+        <item
+            android:id="@+id/shoes"
+            android:title="신발" />
+        <item
+            android:id="@+id/under_wear"
+            android:title="속옷" />
+        <item
+            android:id="@+id/accessory"
+            android:title="악세서리" />
+    </group>
+</menu>

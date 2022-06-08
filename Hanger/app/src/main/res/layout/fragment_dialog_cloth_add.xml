@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/round_white_gray_20"
+        android:padding="12dp"
+        tools:context=".view.cloth.ClothAddDialogFragment">
+
+        <ImageView
+            android:id="@+id/close_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/gray500" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/photo_add_btn"
+            android:layout_width="130dp"
+            android:layout_height="160dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/close_btn">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/photo_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/sample_cloth" />
+
+
+                <ImageView
+                    android:id="@+id/cloth_img_add_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_plus"
+                    app:tint="@color/colorPrimary" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <EditText
+            android:id="@+id/buyer_et"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="12dp"
+            android:background="@drawable/round_white_gray_12"
+            android:hint="구매처"
+            android:paddingHorizontal="12dp"
+            android:textColorHint="@color/gray500"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/photo_add_btn" />
+
+        <EditText
+            android:id="@+id/size_select_btn"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_white_gray_12"
+            android:gravity="center|left"
+            android:hint="사이즈"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/gray500"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buyer_et" />
+
+        <EditText
+            android:id="@+id/memo_et"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_white_gray_12"
+            android:gravity="left|top"
+            android:hint="내용을 입력해주세요"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray500"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/size_select_btn" />
+
+        <Spinner
+            android:id="@+id/category_add"
+            android:layout_width="240dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/memo_et"
+            app:layout_constraintStart_toStartOf="@+id/memo_et"
+            app:layout_constraintTop_toBottomOf="@+id/memo_et" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="130dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/round_white_gray_12"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/category_add"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo_add_btn">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tag_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="6dp"
+                android:scrollbars="none"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/tag_add_et"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:background="@null"
+                    android:gravity="left|center"
+                    android:hint="태그 추가"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray500"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/tag_add_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:src="@drawable/ic_plus"
+                    app:tint="@color/colorPrimary" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cloth_add_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="추가"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/cancel_btn" />
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="0dp"
+            android:layout_marginLeft="12dp"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:backgroundTint="@color/gray500"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/cloth_add_btn"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

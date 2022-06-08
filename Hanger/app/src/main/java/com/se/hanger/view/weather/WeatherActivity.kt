@@ -15,7 +15,7 @@ import com.se.hanger.data.retrofit.RetrofitClient
 import com.se.hanger.data.retrofit.api.WeatherService
 import com.se.hanger.databinding.ActivityWeatherBinding
 import com.se.hanger.setStatusBarTransparent
-import com.se.hanger.view.main.ClothFragment
+import com.se.hanger.view.cloth.ClothFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
