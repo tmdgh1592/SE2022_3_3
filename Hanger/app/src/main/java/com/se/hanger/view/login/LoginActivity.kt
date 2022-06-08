@@ -43,7 +43,6 @@ class LoginActivity(
                         RegisterActivity::class.java
                     ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 )
-                finish()
             }
             R.id.login_card_view -> {
                 val username = binding.idEditText.text
@@ -60,6 +59,7 @@ class LoginActivity(
                                     MainActivity::class.java
                                 )
                             )
+                            finish()
                         } ?: showSnackBar("아이디와 패스워드를 다시 확인해주세요!")
                     }
                 } else {
