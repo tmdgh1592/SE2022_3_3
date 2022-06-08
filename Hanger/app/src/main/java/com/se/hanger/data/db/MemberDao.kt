@@ -20,6 +20,9 @@ interface MemberDao {
     @Query("SELECT * FROM MemberTable WHERE uid = :uid")
     suspend fun findById(uid: Int): Member?
 
+    @Query("SELECT * FROM MemberTable WHERE username = :username")
+    suspend fun findByUsername(username: String): Member?
+
     @Update
     suspend fun update(member: Member)
 }
