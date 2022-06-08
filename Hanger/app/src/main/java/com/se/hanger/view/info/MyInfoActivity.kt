@@ -3,6 +3,7 @@ package com.se.hanger.view.info
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -65,7 +66,7 @@ class MyInfoActivity : AppCompatActivity() {
         }
 
 
-        binding.unregisterBtn.setOnClickListener {
+        binding.logoutBtn.setOnClickListener {
             AlertDialog.Builder(this).setTitle("로그아웃").setMessage("로그아웃 하시겠습니까?")
                 .setPositiveButton("확인") { _, _ ->
                     getSharedPreferences("hanger", Context.MODE_PRIVATE).edit().putInt("uid", -1)
@@ -78,5 +79,12 @@ class MyInfoActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> finish()
+        }
+        return true
     }
 }
