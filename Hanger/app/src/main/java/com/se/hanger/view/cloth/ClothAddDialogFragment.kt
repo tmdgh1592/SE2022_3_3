@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.activity.result.ActivityResultLauncher
@@ -12,7 +13,6 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.github.drjacky.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
 import com.se.hanger.data.model.*
@@ -26,6 +26,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.internal.notify
 import org.threeten.bp.LocalDate
+import java.io.File
 
 class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
     private lateinit var binding: FragmentDialogClothAddBinding
@@ -103,14 +104,14 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
             clothAddBtn.setOnClickListener {
                 // DB 는 IO 작업이기 때문에 scope 열어줌
                 // TODO 각종 ui 에서 데이터 가져와서 설정해주자
-                if (hasPhoto){
+                if (hasPhoto && photo != null){
                     CoroutineScope(Dispatchers.IO).launch {
                         val cloth = Cloth(
                             buyUrl = buyerEt.text.toString(),
                             clothSize = sizeSelectBtn.text.toString(),
                             clothName = clothNameTv.text.toString(),
                             clothMemo = memoEt.text.toString(),
-                            clothPhoto = photo?.photoUriString.toString(),
+                            clothPhoto = photo!!,
                             dailyPhoto = listOf(photo!!),
                             tags = adapter.dataSet.map { data ->
                                 Tag("", data)
@@ -160,4 +161,5 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                 }
             }
     }
+
 }
