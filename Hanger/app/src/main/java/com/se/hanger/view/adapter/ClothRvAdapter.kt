@@ -1,5 +1,6 @@
 package com.se.hanger.view.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class ClothRvAdapter(val clothList: MutableList<Cloth>) :
             clothModel.let {
                 with(binding) {
                     Glide.with(binding.root).load(it.clothPhoto).into(clothIv)
+                    Log.d("TAG", "bind: " + it.clothName)
                     clothNameTv.text = it.clothName
                     deleteBtn.setOnClickListener {
                         onClickDeleteButton?.delete(clothModel)
