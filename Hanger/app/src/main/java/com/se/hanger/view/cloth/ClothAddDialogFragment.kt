@@ -19,6 +19,7 @@ import com.se.hanger.data.model.*
 import com.se.hanger.databinding.FragmentDialogClothAddBinding
 import com.se.hanger.utils.ScreenSizeProvider
 import com.se.hanger.view.adapter.TagAdapter
+import com.se.hanger.view.main.ClothAddListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,6 +32,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
     private lateinit var clothDB: ClothDatabase
     private lateinit var date: LocalDate
     private lateinit var adapter: TagAdapter
+    private lateinit var clothAddListener: ClothAddListener
     private var photo: Photo? = null
     private var hasPhoto = false // 사진 추가 여부
     private var galleryLauncher: ActivityResultLauncher<Intent>? = null
@@ -68,6 +70,10 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
         dialog?.window?.setLayout((width * 0.9).toInt(), (height * 0.9).toInt())
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+    }
+
+    fun setClothAddListener(clothAddListener: ClothAddListener) {
+        this.clothAddListener = clothAddListener
     }
 
     private fun setClickListener() {
@@ -113,6 +119,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         )
                         clothDB.clothDao().insert(cloth)
                         withContext(Dispatchers.Main) {
+                            clothAddListener.onAdded()
                             dismiss()
                         }
                     }

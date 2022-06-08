@@ -94,7 +94,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
         loadClothes() // DB에서 Cloth를 불러와 적용한다.
     }
 
-    private fun loadClothes() {
+    fun loadClothes() {
         CoroutineScope(Dispatchers.IO).launch {
             val clothes = clothDB.clothDao().getClothes()
             withContext(Dispatchers.Main) {
