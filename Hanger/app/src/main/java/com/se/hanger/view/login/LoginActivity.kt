@@ -1,5 +1,6 @@
 package com.se.hanger.view.login
 
+import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -51,6 +52,9 @@ class LoginActivity(
                     CoroutineScope(Dispatchers.IO).launch {
                         val member: Member? =
                             memberDao.findByUsernameAndPw(username.toString(), password.toString())
+
+                        getSharedPreferences("hanger", Context.MODE_PRIVATE).edit()
+                            .putInt("uid", member?.uid ?: -1).apply()
 
                         member?.let {
                             startActivity(

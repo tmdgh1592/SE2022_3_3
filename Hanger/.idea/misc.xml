@@ -26,6 +26,7 @@
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_cloth_add.xml" value="0.25" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_my_info.xml" value="0.25" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/activity_weather.xml" value="0.2328125" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/category_sliding_nav.xml" value="0.2328125" />
         <entry key="..\:/temp_project/SE2022_3_3/Hanger/app/src/main/res/layout/fragment_calendar.xml" value="0.3651041666666667" />
@@ -45,7 +46,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

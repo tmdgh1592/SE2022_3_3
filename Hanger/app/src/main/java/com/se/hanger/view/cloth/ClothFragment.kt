@@ -23,6 +23,7 @@ import com.se.hanger.data.retrofit.RetrofitClient
 import com.se.hanger.data.retrofit.api.WeatherService
 import com.se.hanger.databinding.FragmentClothBinding
 import com.se.hanger.view.adapter.ClothRvAdapter
+import com.se.hanger.view.info.MyInfoActivity
 import com.se.hanger.view.weather.WeatherActivity
 import kotlinx.coroutines.*
 import retrofit2.Call
@@ -74,7 +75,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
             mutableListOf()
         )
         // 의류 삭제 클릭 리스너
-        clothAdapter.setClickListener(object: OnClickDeleteButton{
+        clothAdapter.setClickListener(object : OnClickDeleteButton {
             override fun delete(item: Cloth) {
                 CoroutineScope(Dispatchers.IO).launch {
                     clothDB.clothDao().delete(item)
@@ -89,7 +90,10 @@ class ClothFragment : Fragment(), View.OnClickListener,
 
     private fun loadClothes() {
         CoroutineScope(Dispatchers.IO).launch {
-            clothAdapter.updateItem(clothDB.clothDao().getClothes())
+            val clothes = clothDB.clothDao().getClothes()
+            withContext(Dispatchers.Main) {
+                clothAdapter.updateItem(clothes)
+            }
         }
     }
 
@@ -99,6 +103,7 @@ class ClothFragment : Fragment(), View.OnClickListener,
             weatherBtn.setOnClickListener(this@ClothFragment)
             menuBtn.setOnClickListener(this@ClothFragment)
             navigationView.setNavigationItemSelectedListener(this@ClothFragment)
+            settingBtn.setOnClickListener(this@ClothFragment)
         }
     }
 
@@ -208,6 +213,9 @@ class ClothFragment : Fragment(), View.OnClickListener,
             }
             R.id.menu_btn -> {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
+            R.id.setting_btn -> {
+                startActivity(Intent(requireActivity(), MyInfoActivity::class.java))
             }
         }
     }

@@ -1,9 +1,6 @@
 package com.se.hanger.data.db
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.se.hanger.data.model.Member
 
 @Dao
@@ -19,4 +16,10 @@ interface MemberDao {
 
     @Query("SELECT * FROM MemberTable")
     suspend fun getUsers(): List<Member>
+
+    @Query("SELECT * FROM MemberTable WHERE uid = :uid")
+    suspend fun findById(uid: Int): Member?
+
+    @Update
+    suspend fun update(member: Member)
 }
