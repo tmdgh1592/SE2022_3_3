@@ -25,8 +25,9 @@ class ClothRvAdapter(val clothList: MutableList<Cloth>) :
 
             clothModel.let {
                 with(binding) {
-                    Glide.with(binding.root).load(it.clothPhoto).into(clothIv)
-                    Log.d("TAG", "bind: " + it.clothName)
+                    Log.d("TAG", "bind: " + it.clothPhoto)
+
+                    Glide.with(binding.clothIv).load(it.clothPhoto).into(clothIv)
                     clothNameTv.text = it.clothName
                     deleteBtn.setOnClickListener {
                         onClickDeleteButton?.delete(clothModel)

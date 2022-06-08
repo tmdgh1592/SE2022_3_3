@@ -22,6 +22,7 @@ import com.se.hanger.view.adapter.TagAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.internal.notify
 import org.threeten.bp.LocalDate
 
@@ -85,7 +86,6 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         .galleryOnly()
                         .createIntent()
                 )
-                hasPhoto = true
             }
 
             /* 취소 버튼 로직*/
@@ -102,9 +102,9 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         val cloth = Cloth(
                             buyUrl = buyerEt.text.toString(),
                             clothSize = sizeSelectBtn.text.toString(),
-                            clothName = "",
+                            clothName = clothNameTv.text.toString(),
                             clothMemo = memoEt.text.toString(),
-                            clothPhoto = photoIv.toString(),
+                            clothPhoto = photo?.photoUriString.toString(),
                             dailyPhoto = listOf(photo!!),
                             tags = adapter.dataSet.map { data ->
                                 Tag("", data)
@@ -112,6 +112,9 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                             categories = listOf(Category(Season.SPRING, CategoryCloth.ACCESSORY))
                         )
                         clothDB.clothDao().insert(cloth)
+                        withContext(Dispatchers.Main) {
+                            dismiss()
+                        }
                     }
                 }
                 else{
@@ -146,6 +149,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         Photo(
                             System.currentTimeMillis().toString(), uri.toString(),
                         )
+                    hasPhoto = true
                 }
             }
     }
