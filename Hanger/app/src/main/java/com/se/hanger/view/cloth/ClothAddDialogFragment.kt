@@ -82,7 +82,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
             /* 태그 추가 로직 */
             tagAddBtn.setOnClickListener {
                 adapter.dataSet.add(tagAddEt.text.toString())
-                adapter.notify()
+                adapter.notifyItemChanged(adapter.dataSet.size - 1)
             }
 
             /* 메인 사진 추가 로직 */
@@ -93,6 +93,7 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         .galleryOnly()
                         .createIntent()
                 )
+                hasPhoto = true
             }
 
             /* 취소 버튼 로직*/
@@ -157,7 +158,6 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         Photo(
                             System.currentTimeMillis().toString(), uri.toString(),
                         )
-                    hasPhoto = true
                 }
             }
     }
