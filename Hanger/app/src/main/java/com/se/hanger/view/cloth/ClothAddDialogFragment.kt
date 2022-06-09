@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.activity.result.ActivityResultLauncher
@@ -12,25 +13,27 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.github.drjacky.imagepicker.ImagePicker
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
 import com.se.hanger.R
 import com.se.hanger.data.db.ClothDatabase
 import com.se.hanger.data.model.*
 import com.se.hanger.databinding.FragmentDialogClothAddBinding
 import com.se.hanger.utils.ScreenSizeProvider
 import com.se.hanger.view.adapter.TagAdapter
-import com.se.hanger.view.main.MainActivity
+import com.se.hanger.view.main.ClothAddListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.internal.notify
 import org.threeten.bp.LocalDate
+import java.io.File
 
 class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
     private lateinit var binding: FragmentDialogClothAddBinding
     private lateinit var clothDB: ClothDatabase
     private lateinit var date: LocalDate
     private lateinit var adapter: TagAdapter
+    private lateinit var clothAddListener: ClothAddListener
     private var photo: Photo? = null
     private var hasPhoto = false // 사진 추가 여부
     private var galleryLauncher: ActivityResultLauncher<Intent>? = null
@@ -70,12 +73,16 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
         dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
     }
 
+    fun setClothAddListener(clothAddListener: ClothAddListener) {
+        this.clothAddListener = clothAddListener
+    }
+
     private fun setClickListener() {
         with(binding) {
             /* 태그 추가 로직 */
             tagAddBtn.setOnClickListener {
                 adapter.dataSet.add(tagAddEt.text.toString())
-                adapter.notifyItemChanged(adapter.dataSet.size - 1)
+                adapter.notify()
             }
 
             /* 메인 사진 추가 로직 */
@@ -86,7 +93,6 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         .galleryOnly()
                         .createIntent()
                 )
-                hasPhoto = true
             }
 
             /* 취소 버튼 로직*/
@@ -98,14 +104,14 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
             clothAddBtn.setOnClickListener {
                 // DB 는 IO 작업이기 때문에 scope 열어줌
                 // TODO 각종 ui 에서 데이터 가져와서 설정해주자
-                if (hasPhoto){
+                if (hasPhoto && photo != null){
                     CoroutineScope(Dispatchers.IO).launch {
                         val cloth = Cloth(
                             buyUrl = buyerEt.text.toString(),
                             clothSize = sizeSelectBtn.text.toString(),
-                            clothName = "넣어줘야함",
+                            clothName = clothNameTv.text.toString(),
                             clothMemo = memoEt.text.toString(),
-                            clothPhoto = photo?.photoUriString!!,
+                            clothPhoto = photo!!,
                             dailyPhoto = listOf(photo!!),
                             tags = adapter.dataSet.map { data ->
                                 Tag("", data)
@@ -113,9 +119,11 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                             categories = listOf(Category(Season.SPRING, CategoryCloth.ACCESSORY))
                         )
                         clothDB.clothDao().insert(cloth)
-                        dismiss()
+                        withContext(Dispatchers.Main) {
+                            clothAddListener.onAdded()
+                            dismiss()
+                        }
                     }
-
                 }
                 else{
                     showSnackBar("의류 사진을 선택해주세요!")
@@ -149,7 +157,9 @@ class ClothAddDialogFragment : DialogFragment(), View.OnClickListener {
                         Photo(
                             System.currentTimeMillis().toString(), uri.toString(),
                         )
+                    hasPhoto = true
                 }
             }
     }
+
 }

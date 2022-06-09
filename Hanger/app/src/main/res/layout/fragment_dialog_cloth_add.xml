@@ -11,6 +11,17 @@
         android:background="@drawable/round_white_gray_20"
         android:padding="12dp"
         tools:context=".view.cloth.ClothAddDialogFragment">
+        <TextView
+            android:id="@+id/title_tv"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/close_btn"
+            app:layout_constraintBottom_toBottomOf="@id/close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="의류 관리"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
 
         <ImageView
             android:id="@+id/close_btn"
@@ -20,6 +31,21 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/gray500" />
+
+        <EditText
+            android:id="@+id/cloth_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/round_white_gray_12"
+            android:hint="의류 이름"
+            android:paddingHorizontal="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray500"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/close_btn" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/photo_add_btn"
@@ -31,7 +57,7 @@
             android:focusable="true"
             app:cardCornerRadius="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/close_btn">
+            app:layout_constraintTop_toBottomOf="@+id/cloth_name_tv">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -66,8 +92,8 @@
             android:background="@drawable/round_white_gray_12"
             android:hint="구매처"
             android:paddingHorizontal="12dp"
-            android:textColorHint="@color/gray500"
             android:textColor="@color/black"
+            android:textColorHint="@color/gray500"
             android:textSize="14sp"
             app:layout_constraintLeft_toRightOf="@+id/photo_add_btn"
             app:layout_constraintRight_toRightOf="parent"
@@ -186,10 +212,10 @@
         <Button
             android:id="@+id/cancel_btn"
             android:layout_width="0dp"
-            android:layout_marginLeft="12dp"
             android:layout_height="wrap_content"
-            android:text="취소"
+            android:layout_marginLeft="12dp"
             android:backgroundTint="@color/gray500"
+            android:text="취소"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/cloth_add_btn"

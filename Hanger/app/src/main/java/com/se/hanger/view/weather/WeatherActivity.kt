@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -112,11 +113,14 @@ class WeatherActivity : AppCompatActivity(), View.OnClickListener {
                         Log.d("TAG", "onResponse: $item")
                     }
                     // 가져온 데이터 할당
-                    _weatherItems.value = weather?.response?.body?.items?.item
+                    weather?.response?.body?.items?.item?.let {
+                        _weatherItems.value = it
+                    } ?: Toast.makeText(this@WeatherActivity, "해당 시간대의 날씨를 불러올 수 없습니다.", Toast.LENGTH_LONG).show()
                 }
 
                 override fun onFailure(call: Call<Weather>, t: Throwable) {
                     Log.d("Weather", "onFailure: $t")
+                    Toast.makeText(this@WeatherActivity, "날씨 데이터를 불러올 수 없습니다.", Toast.LENGTH_LONG).show()
                 }
 
             })

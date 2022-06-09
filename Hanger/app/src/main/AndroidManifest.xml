@@ -11,11 +11,15 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.Hanger"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".view.info.MyInfoActivity"
+            android:exported="false" />
         <activity
             android:name=".view.login.RegisterActivity"
             android:exported="false"
@@ -25,7 +29,6 @@
             android:name=".view.login.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,8 +38,7 @@
         <activity android:name=".view.weather.WeatherActivity" />
         <activity
             android:name="com.se.hanger.view.main.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
