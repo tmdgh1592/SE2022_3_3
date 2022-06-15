@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/round_white_gray_12"
                 android:imeOptions="actionNext"
-                android:maxLength="12"
+                android:maxLength="25"
                 android:maxLines="1"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="12dp"
